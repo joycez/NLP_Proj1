@@ -62,7 +62,7 @@ def do_all():
             if min(s[x:].find('.'),s[x:].find('?'),s[x:].find('!')) == s[x:].find('!'):
                 text += after_space_before_exclamation_mark(s[x:]) + "\n"
                 x += s[x:].find('!')+2
-            if s[x:].find('.') == -1:
+            if s[x:].find('.') == -1 or s[x:].find('?') == -1 or s[x:].find('!') == -1:
                 return text 
     
     tr = getCorpus(train)
