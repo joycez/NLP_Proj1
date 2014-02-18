@@ -57,7 +57,7 @@ def do_all():
         s = s.replace(":"," :")
         s = s.replace(";"," ;")
         s = s.replace('"',' "')
-        s = s.replace("'","' ")
+        s = s.replace("'"," '")
         s = s.replace("."," .")
         s = s.replace("!"," !")
         s = s.replace("?"," ?")
