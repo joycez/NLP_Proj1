@@ -1,7 +1,8 @@
 def do_all():
 
     import urllib2
-
+    import re
+    
     train = 'file:///Users/jianjiang/Desktop/bible_corpus/kjbible.train.html'
     test  = 'file:///Users/jianjiang/Desktop/bible_corpus/kjbible.test.html'
     valid = 'file:///Users/jianjiang/Desktop/bible_corpus/kjbible.valid.html'
@@ -10,7 +11,20 @@ def do_all():
         """Returns: the string of corpus"""
         u = urllib2.urlopen(a)
         return u.read()
-
+    
+    def replace_starter(s):
+        info1 = re.compile("\d:\d")
+        info2 = re.compile("\d\d:\d")
+        info3 = re.compile("\d:\d\d")
+        info4 = re.compile("\d\d:\d\d")
+        info5 = re.compile("  ")
+        news = info4.sub("",s)
+        news = info3.sub("",news)
+        news = info2.sub("",news)
+        news = info1.sub("",news)
+        news = info5.sub(" ",news)
+        return news
+        
     def after_space_before_dot(s):
         """Returns: Substring of s; from but not including, the first space,
         and up to andincluding, the first dot
@@ -43,7 +57,7 @@ def do_all():
         s = s.replace(":"," :")
         s = s.replace(";"," ;")
         s = s.replace('"',' "')
-        s = s.replace("'"," ' ")
+        s = s.replace("'","' ")
         s = s.replace("."," .")
         s = s.replace("!"," !")
         s = s.replace("?"," ?")
@@ -55,19 +69,23 @@ def do_all():
         while x >=0:
             if min(s[x:].find('.'),s[x:].find('?'),s[x:].find('!')) == s[x:].find('.'):
                 text += after_space_before_dot(s[x:]) + "\n"
-                x += s[x:].find('.')+2
+                x += s[x:].find('.')+1
             if min(s[x:].find('.'),s[x:].find('?'),s[x:].find('!')) == s[x:].find('?'):
                 text += after_space_before_question_mark(s[x:]) + "\n"
-                x += s[x:].find('?')+2
+                x += s[x:].find('?')+1
             if min(s[x:].find('.'),s[x:].find('?'),s[x:].find('!')) == s[x:].find('!'):
                 text += after_space_before_exclamation_mark(s[x:]) + "\n"
-                x += s[x:].find('!')+2
+                x += s[x:].find('!')+1
             if s[x:].find('.') == -1 or s[x:].find('?') == -1 or s[x:].find('!') == -1:
                 return text 
     
     tr = getCorpus(train)
     te = getCorpus(test)
     va = getCorpus(valid)
+    
+    tr = replace_starter(tr)
+    te = replace_starter(te)
+    va = replace_starter(va)
     
     tr = add_space_before_punctuation(slice(tr))
     te = add_space_before_punctuation(slice(te))
