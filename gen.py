@@ -13,7 +13,7 @@ class generator:
                 if self.ngram == 1:
                         for word in lm.UnigramCount.keys():
                                 number = lm.UnigramCount[word]
-                                while(number>0):
+                                while(number>0 and word!='<s>' and word!='</s>'):
                                         self.bag.append(word)
                                         number -= 1
                 elif self.ngram == 2:
@@ -21,11 +21,12 @@ class generator:
                                 if isinstance(pair,basestring)==False:
 #                                       print pair
                                         word1,word2 = pair
-                                        self.whitelist.append(word1)
-                                        number = lm.BigramCount[pair]
-                                        while(number>0):
-                                                self.bag.append(pair)
-                                                number -= 1
+                                        if word1!='<s>' and word1!='</s>' and word2!='<s>' and word2!='</s>':
+                                                self.whitelist.append(word1)
+                                                number = lm.BigramCount[pair]
+                                                while(number>0):
+                                                        self.bag.append(pair)
+                                                        number -= 1
 #                print self.bag
 #                print self.whitelist
         def go(self,length):
