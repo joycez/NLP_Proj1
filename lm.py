@@ -18,7 +18,7 @@ class LangModel:
 
 	# initialize the instance object with the trained model
 	# takes 2 attributes
-	# infile_name: string, training corpora
+	# infile_name: string, training corpus
 	# ngram: integer, 1 == Unigram, 2 == Bigram
 	def __init__(self, infile_name, ngram):
 		if ngram == 1:
@@ -34,10 +34,10 @@ class LangModel:
 			self.BigramTokens = model["TotalTokens"]
 			self.BigramTypes = model["TotalTypes"]
 
-  # train the language model with the given corpora,
+  # train the language model with the given corpus,
   # and dump the model into a file.
   # takes 3 attributes
-  # infile_name: string, training corpora
+  # infile_name: string, training corpus
   # outfile_name: string, UNIGRAM_MODEL or BIGRAM_MODEL
   # ngram: integer, 1 == Unigram, 2 == Bigram
 	def train_model(self, infile_name, outfile_name, ngram):
