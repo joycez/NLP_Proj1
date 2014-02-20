@@ -3,9 +3,13 @@ def do_all():
     import urllib2
     import re
     
-    train = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.train.html'
-    test  = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.test.html'
-    valid = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.valid.html'
+#    train = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.train.html'
+#    test  = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.test.html'
+#    valid = 'file:///Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/bible_corpus/kjbible.valid.html'
+
+    train = 'file://C:/Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/splitta/hotel_train.html'
+    test  = 'file://C:/Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/splitta/hotel_test.html'
+    valid = 'file://C:/Users/Asus/Documents/Cornell/Courses/2014Spring/Natural Language Processing/NLP_Proj1/splitta/hotel_valid.html'
 
     def getCorpus(a):
         """Returns: the string of corpus"""
@@ -13,8 +17,8 @@ def do_all():
         return u.read()
     
     def replace_starter(s):
-        info1 = re.compile("/d:\d")
-        info2 = re.compile("\d\d:\d")
+        info1 = re.compile("/d:/d")
+        info2 = re.compile("/d/d:/d")
         info3 = re.compile("\d:\d\d")
         info4 = re.compile("\d\d:\d\d")
         info5 = re.compile("  ")
