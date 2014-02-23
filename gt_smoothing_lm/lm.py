@@ -37,8 +37,8 @@ class GTLangModel:
   # ngram: integer, 1 == Unigram, 2 == Bigram
 	def trainModel(self, trainFileName, validFileName, ngram):
 		count = {}
-		TotalTokens = 0
-		TotalTypes = 0
+		totalTokens = 0
+		totalTypes = 0
 		infile = open(trainFileName, 'r')
 		for line in infile.readlines():
 			words = line.split()
@@ -47,8 +47,8 @@ class GTLangModel:
 					count[word] += 1
 				else:
 					count[word] = 1
-					TotalTypes += 1
-				TotalTokens += 1
+					totalTypes += 1
+				totalTokens += 1
 			if ngram == 2:
 				for i in range(len(words)-1):
 					if (words[i], words[i+1]) in count:
@@ -69,8 +69,8 @@ class GTLangModel:
 						count[newWord] += 1
 					else:
 						count[newWord] = 1
-						TotalTypes += 1
-					TotalTokens += 1
+						totalTypes += 1
+					totalTokens += 1
 				if ngram == 2:
 					for i in range(len(newWords)-1):
 						if (newWords[i], newWords[i+1]) in count:
@@ -94,7 +94,7 @@ class GTLangModel:
 				gtFreq[i] = (i+1) * (float(sameFreqCount[i+1])/sameFreqCount[i])
 				## print i, gtFreq[i]
 			else: gtFreq[i] = i
-		gtZeroFreq = sameFreqCount[1]
+		gtZeroFreq = sameFreqCount[1] / totalTokens
 
 		for (key, freq) in count.items():
 			count[key] = gtFreq[freq]
@@ -102,15 +102,15 @@ class GTLangModel:
 		## print gtZeroFreq
 		## print gtFreq
 
-		TotalTokens = gtZeroFreq
+		totalTokens = gtZeroFreq
 		for key,freq in gtFreq.items():
-			TotalTokens += freq * sameFreqCount[key]
+			totalTokens += freq * sameFreqCount[key]
 
 		fout = open(self.MODEL[ngram],'w')
 		pickle.dump(count, fout)
 		pickle.dump(gtZeroFreq, fout)
-		pickle.dump(TotalTokens, fout)
-		pickle.dump(TotalTypes, fout)
+		pickle.dump(totalTokens, fout)
+		pickle.dump(totalTypes, fout)
 
 	# load the language model from the file
 	# takes 1 attribute
