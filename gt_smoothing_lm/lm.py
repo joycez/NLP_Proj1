@@ -94,7 +94,7 @@ class GTLangModel:
 				gtFreq[i] = (i+1) * (float(sameFreqCount[i+1])/sameFreqCount[i])
 				## print i, gtFreq[i]
 			else: gtFreq[i] = i
-		gtZeroFreq = sameFreqCount[1] / totalTokens
+		gtZeroFreq = float(sameFreqCount[1]) / totalTokens
 
 		for (key, freq) in count.items():
 			count[key] = gtFreq[freq]
