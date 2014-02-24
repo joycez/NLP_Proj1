@@ -13,7 +13,7 @@ class generator:
                 if self.ngram == 1:
                         for word in lm.UnigramCount.keys():
                                 number = lm.UnigramCount[word]
-                                while(number>0 and word!='<s>' and word!='</s>'):
+                                while(number>0 and word!='<s>'):
                                         self.bag.append(word)
                                         number -= 1
                 # The usage of whitelist ensures no pairs in the bag end with a string which is not the first word in any pair
@@ -37,6 +37,8 @@ class generator:
                         self.gen_words = []
                         for i in range(length):
                                 w1 = random.choice(self.bag)
+                                if(w1 == '</s>'):
+                                        break
                                 self.gen_words.append(w1)
                         print ' '.join(self.gen_words)
                 # Generate a sentence which is NO MORE THAN "length" number of words and has the same endings with the        

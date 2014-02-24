@@ -33,7 +33,7 @@ class GTLangModel:
   # and dump the model into a file.
   # takes 4 attributes
   # trainFileName: string, training corpus
-  # validFileName: string, validatin corpus
+  # validFileName: string, validating corpus
   # ngram: integer, 1 == Unigram, 2 == Bigram
 	def trainModel(self, trainFileName, validFileName, ngram):
 		count = {}
