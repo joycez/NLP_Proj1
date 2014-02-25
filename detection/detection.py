@@ -27,6 +27,7 @@ class detector:
                 bigtable = {}
                 testfile = open(testFileName, 'r')
                 number = 1
+                total = 0
                 resultfile = open("TestResult%s.txt" % self.ngram,'w')
                 resultfile.write("Id, Label\n")
                 for line in testfile.readlines():
@@ -38,15 +39,16 @@ class detector:
                         NTtest = test(self.lmNT, self.ngram, "hotel_test_clip.lm")
         # the smaller the perplexity on one model, the bigger chance that this review is corresponded with this model
                         if Ttest.pp() >= NTtest.pp():
-                                bigtable[number] = '0'
+                                bigtable[number] = 0
                         else:
-                                bigtable[number] = '1'                     
+                                bigtable[number] = 1
+                                total += 1
                         result = str(number) + ', '
-                        result += bigtable[number]
+                        result += str(bigtable[number])
                         result += '\n'
                         resultfile.write(result)
                         number += 1                    
-                print 'done!'
+                print "Done predicting, truthful rate=%s" % str(1.0*total/(number-1))
                 
                 
                 
