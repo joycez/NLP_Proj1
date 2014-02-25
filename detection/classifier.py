@@ -9,6 +9,8 @@ import random
 import pickle
 import math
 
+# Divide original hotel_review corpus(unpreprocessed) into Two parts:
+#       Truthful reviews        and     Nontruthful reviews
 class classifier:
         def __init__(self, train_fileName, trainORvalid):
                 self.trainORvalid = trainORvalid
@@ -28,8 +30,7 @@ class classifier:
                                 Nontruthful.write(line)
                         if words[0][0] == '1':
                                 Truthful.write(line)
-                print 'Reconstruction Complete!'
-                
+                print 'Reconstruction Complete!'        
                 
                 
 

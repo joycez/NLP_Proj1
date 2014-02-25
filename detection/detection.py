@@ -10,6 +10,8 @@ import random
 import pickle
 import math
 
+# detector: detects the truthfulness of all the reviews in a testfile
+# takes 4 files to train the model first(truthful_train, truthful_valid, Nontruthful_train, Nontruthful_valid)
 class detector:
         def __init__(self, trainT_filename, trainNT_filename, validT_filename, validNT_filename, ngram):
                 self.ngram = ngram
@@ -28,11 +30,13 @@ class detector:
                 resultfile = open("TestResult%s.txt" % self.ngram,'w')
                 resultfile.write("Id, Label\n")
                 for line in testfile.readlines():
+        # extract every review to put in a new file, and compare perplexities on each model to see where it belongs
                         tempfile = open("hotel_test_clip.lm", 'w')
                         tempfile.write(line)
                         tempfile.close()
                         Ttest = test(self.lmT, self.ngram, "hotel_test_clip.lm")
                         NTtest = test(self.lmNT, self.ngram, "hotel_test_clip.lm")
+        # the smaller the perplexity on one model, the bigger chance that this review is corresponded with this model
                         if Ttest.pp() >= NTtest.pp():
                                 bigtable[number] = '0'
                         else:
