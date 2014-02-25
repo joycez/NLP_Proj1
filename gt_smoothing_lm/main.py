@@ -27,26 +27,24 @@ def main():
 ##        print '------End------'
 
 #  ----     part2       ----
-
+##
         lm1 = GTLangModel("bible_train.lm", "bible_valid.lm", 1)
         lm2 = GTLangModel("bible_train.lm", "bible_valid.lm", 2)
         bible_test1 = test(lm1, 1, "bible_test.lm")
         bible_test2 = test(lm2, 2, "bible_test.lm")
-        bible_test1.pp();
-        bible_test2.pp();
-        
-        #lm1 = LangModel("hotel_corpus/hotel_train.txt", 1)
-        #lm2 = LangModel("hotel_train.lm", 2)
-        lm1 = GTLangModel("sample.train", "sample.valid", 1)
-        lm2 = GTLangModel("sample.train", "sample.valid", 2)
-        #lm1 = GTLangModel("../hotel_corpus/hotel_train.txt","../hotel_corpus/hotel_valid.txt", 1)
-        #lm2 = GTLangModel("../hotel_corpus/hotel_train.txt","../hotel_corpus/hotel_valid.txt", 2)
+        print bible_test1.pp();
+        print bible_test2.pp();
+
+        lm1 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 1)
+        lm2 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 2)
+        hotel_test1 = test(lm1, 1, "hotel_test.lm")
+        hotel_test2 = test(lm2, 2, "hotel_test.lm")
+        print hotel_test1.pp();
+        print hotel_test2.pp();
 
         s = None
         while s != 'quit':
                 s = raw_input()
-                #print lm1.probUnigram("the")
-                print lm2.probBigram("the", s)
                 
 if __name__ == "__main__":
   main()
