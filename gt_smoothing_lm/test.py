@@ -35,6 +35,12 @@ class test:
                         for i in range(0,N-1):
                                 if(self.testdata[i]!='</s>'):
                                         logresult += math.log10(self.lm.probBigram(self.testdata[i],self.testdata[i+1]))
+                elif self.ngram == 3:
+                        logresult = 0.0
+                        for i in range(0,N-2):
+##                                print self.testdata[i], self.testdata[i+1], self.testdata[i+2]
+                                if(self.testdata[i]!='</s>' and self.testdata[i+1]!='</s>'):
+                                        logresult += math.log10(self.lm.probTrigram(self.testdata[i],self.testdata[i+1],self.testdata[i+2]))                        
                 result = math.pow(10,logresult*(-1.0/N))
                 return result
                 
