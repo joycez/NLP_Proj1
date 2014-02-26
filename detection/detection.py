@@ -37,6 +37,9 @@ class detector:
                         tempfile.close()
                         Ttest = test(self.lmT, self.ngram, "hotel_test_clip.lm")
                         NTtest = test(self.lmNT, self.ngram, "hotel_test_clip.lm")
+        # handle blank lines: skip them
+                        if Ttest.pp() == None or NTtest.pp() == None:
+                                continue
         # the smaller the perplexity on one model, the bigger chance that this review is corresponded with this model
                         if Ttest.pp() >= NTtest.pp():
                                 bigtable[number] = 0
@@ -49,9 +52,6 @@ class detector:
                         resultfile.write(result)
                         number += 1                    
                 print "Done predicting, truthful rate=%s" % str(1.0*total/(number-1))
-                
-                
-                
-                
+                return 1.0*total/(number-1)
 
                 

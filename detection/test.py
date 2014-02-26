@@ -24,7 +24,7 @@ class test:
         def pp(self):
                 N = len(self.testdata)
                 if N == 0:
-                        print 'Do not keep empty lines in your file!'
+                        print 'Do not keep empty lines in your testfile!'
                         return None
                 if self.ngram == 1 or N == 1:
                         logresult = self.lm.probUnigram(self.testdata[0])
@@ -37,7 +37,7 @@ class test:
                                         logresult += math.log10(self.lm.probBigram(self.testdata[i],self.testdata[i+1]))
                 result = math.pow(10,logresult*(-1.0/N))
                 return result
-#                print result
+                print result
 
 
                 

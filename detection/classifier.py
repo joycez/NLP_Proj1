@@ -9,6 +9,11 @@ import random
 import pickle
 import math
 
+Ttrain = "hotel_truthful_train.txt"
+NTtrain = "hotel_Nontruthful_train.txt"
+Tvalid = "hotel_truthful_valid.txt"
+NTvalid = "hotel_Nontruthful_valid.txt"
+
 # Divide original hotel_review corpus(unpreprocessed) into Two parts:
 #       Truthful reviews        and     Nontruthful reviews
 class classifier:
@@ -19,17 +24,23 @@ class classifier:
         def splitModels(self, train_fileName):
                 trainfile = open(train_fileName, 'r')
                 if self.trainORvalid == 'train':
-                        Truthful = open("hotel_subsets/Truthful_train.txt", 'w')
-                        Nontruthful = open("hotel_subsets/Nontruthful_train.txt", 'w')
+                        Truthful = open(Ttrain, 'w')
+                        Nontruthful = open(NTtrain, 'w')
                 elif self.trainORvalid == 'valid':
-                        Truthful = open("hotel_subsets/Truthful_valid.txt", 'w')
-                        Nontruthful = open("hotel_subsets/Nontruthful_valid.txt", 'w')
+                        Truthful = open(Tvalid, 'w')
+                        Nontruthful = open(NTvalid, 'w')
                 for line in trainfile.readlines():
                         words = line.split()
+                        if len(words) == 0:
+                                continue
 			if words[0][0] == '0':
+                                line = line[5:]
                                 Nontruthful.write(line)
                         if words[0][0] == '1':
+                                line = line[5:]
                                 Truthful.write(line)
+                Truthful.close()
+                Nontruthful.close()
                 print 'Reconstruction Complete!'        
                 
                 

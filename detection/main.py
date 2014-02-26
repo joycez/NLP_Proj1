@@ -44,15 +44,16 @@ def main():
         
 #  ----     part3       ----
 
-##        c1 = classifier("reviews.train.txt", 'train')
-##        c2 = classifier("reviews.valid.txt", 'valid')
+##        c1 = classifier("hotel_train.lm", 'train')
+##        c2 = classifier("hotel_valid.lm", 'valid')
         
         d1 = detector("hotel_truthful_train.lm", "hotel_Nontruthful_train.lm", "hotel_truthful_valid.lm", "hotel_Nontruthful_valid.lm", 1)
         d1.detect("hotel_test.lm")
-
+        d1.detect("KTest.txt")
         d2 = detector("hotel_truthful_train.lm", "hotel_Nontruthful_train.lm", "hotel_truthful_valid.lm", "hotel_Nontruthful_valid.lm", 2)
         d2.detect("hotel_test.lm")
-
+        d2.detect("KTest.txt")
+     
 ##
 ##        s = None
 ##        while s != 'quit':
