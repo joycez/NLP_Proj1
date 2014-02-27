@@ -7,6 +7,7 @@ class generator:
                 self.ngram = 0
                 self.bag = []                           
                 self.whitelist = []
+                self.whitepairs = []
                 self.ngram = ngram
                 self.lm = lm
                 # restore dataset from distribution
@@ -20,13 +21,23 @@ class generator:
                 elif self.ngram == 2:
                         self.whitelist.append('</s>')
                         for pair in lm.BigramCount.keys():
-                                if isinstance(pair,basestring)==False:
+                                if len(pair) == 2:
                                         word1,word2 = pair
                                         self.whitelist.append(word1)
                                         number = lm.BigramCount[pair]
                                         while(number>0):
                                                 self.bag.append(pair)
                                                 number -= 1
+                elif self.ngram == 3:
+                        for three in lm.TrigramCount.keys():
+                                if len(three) == 3:
+                                        word1,word2,word3 = three
+                                        self.whitelist.append((word1,word2))
+                                        number = lm.TrigramCount[three]
+                                        while(number>0):
+                                                self.bag.append(three)
+                                                number -= 1
+                        
         def go(self,length):
                 initial = None
                 sign = None
@@ -57,6 +68,26 @@ class generator:
                                 self.gen_words.append(w2)
                                 w1 = w2
                         print ' '.join(self.gen_words)
-                                
+                elif self.ngram == 3:                                                   
+                        self.gen_words = []
+                        while(sign!='<s>'):
+                                (sign,first,second) = random.choice(self.bag)     
+                        w1 = first
+                        w2 = second
+                        self.gen_words.append(w1)
+                        self.gen_words.append(w2)
+                        for i in range(length-2):
+                                while(option1!=w1 or option2!=w2 or ((option2,option3) not in self.whitelist)):  # avoid infinite loops where (option2,*) does not exist
+                                        (option1,option2,option3) = random.choice(self.bag)
+                                w3 = option3
+#                                print w1,w2,w3
+                                if(w3 == '</s>'):
+                                        break
+                                self.gen_words.append(w3)
+                                if(w3 == '.' or w3 == '?' or w3 == '!'):
+                                        break
+                                w1 = w2
+                                w2 = w3
+                        print ' '.join(self.gen_words)          
                         
 

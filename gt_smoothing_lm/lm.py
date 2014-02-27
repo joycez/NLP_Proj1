@@ -210,7 +210,7 @@ class GTLangModel:
 
 		if (triWord, preWord) in self.TrigramCount:
 			preTwoWordsCount = self.TrigramCount[(triWord, preWord)]
-			print preTwoWordsCount
+##			print preTwoWordsCount
 			if preTwoWordsCount != 0:
 				if (triWord, preWord, word) not in self.TrigramCount:
 					prob = self.gtZeroFreq / (0.0 + preTwoWordsCount)

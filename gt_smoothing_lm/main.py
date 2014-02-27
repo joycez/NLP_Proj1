@@ -33,26 +33,26 @@ def main():
         lm3 = GTLangModel("bible_train.lm", "bible_valid.lm", 3)        
         bible_test1 = test(lm1, 1, "bible_test.lm")
         bible_test2 = test(lm2, 2, "bible_test.lm")
-        #bible_test3 = test(lm3, 3, "bible_test.lm")
+        bible_test3 = test(lm3, 3, "bible_test.lm")
         print "bible Unigram perplexity:"        
         print bible_test1.pp();
         print "bible Bigram perplexity:"
         print bible_test2.pp();
-        #print "bible Trigram perplexity"
-        #print bible_test3.pp();
+        print "bible Trigram perplexity"
+        print bible_test3.pp();
 
-        # lm1 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 1)
-        # lm2 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 2)
-        # lm3 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 3)        
-        # hotel_test1 = test(lm1, 1, "hotel_test.lm")
-        # hotel_test2 = test(lm2, 2, "hotel_test.lm")
-        # hotel_test3 = test(lm3, 3, "hotel_test.lm")
-        # print "bible Unigram perplexity:"
-        # print hotel_test1.pp();
-        # print "bible Bigram perplexity:"
-        # print hotel_test2.pp();
-        # print "bible Trigram perplexity"
-        # print hotel_test3.pp();
+        lm1 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 1)
+        lm2 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 2)
+        lm3 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 3)        
+        hotel_test1 = test(lm1, 1, "hotel_test.lm")
+        hotel_test2 = test(lm2, 2, "hotel_test.lm")
+        hotel_test3 = test(lm3, 3, "hotel_test.lm")
+        print "hotel Unigram perplexity:"
+        print hotel_test1.pp();
+        print "hotel Bigram perplexity:"
+        print hotel_test2.pp();
+        print "hotel Trigram perplexity"
+        print hotel_test3.pp();
 
         #lm = GTLangModel("sample.train", "sample.valid", 3)
         # print "Unigram Prob:"
