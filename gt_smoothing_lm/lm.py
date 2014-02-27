@@ -216,5 +216,7 @@ class GTLangModel:
 					prob = self.gtZeroFreq / (0.0 + preTwoWordsCount)
 				else:
 					prob = self.TrigramCount[(triWord, preWord, word)] / (0.0 + preTwoWordsCount)
+		else:
+			prob = self.gtZeroFreq
 		return prob
 

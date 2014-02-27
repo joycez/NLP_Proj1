@@ -31,15 +31,15 @@ def main():
         lm1 = GTLangModel("bible_train.lm", "bible_valid.lm", 1)
         lm2 = GTLangModel("bible_train.lm", "bible_valid.lm", 2)
         lm3 = GTLangModel("bible_train.lm", "bible_valid.lm", 3)        
-        # bible_test1 = test(lm1, 1, "bible_test.lm")
-        # bible_test2 = test(lm2, 2, "bible_test.lm")
-        # bible_test2 = test(lm3, 3, "bible_test.lm")
-        # print "bible Unigram perplexity:"        
-        # print bible_test1.pp();
-        # print "bible Bigram perplexity:"
-        # print bible_test2.pp();
-        # print "bible Trigram perplexity"
-        # print bible_test3.pp();
+        bible_test1 = test(lm1, 1, "bible_test.lm")
+        bible_test2 = test(lm2, 2, "bible_test.lm")
+        #bible_test3 = test(lm3, 3, "bible_test.lm")
+        print "bible Unigram perplexity:"        
+        print bible_test1.pp();
+        print "bible Bigram perplexity:"
+        print bible_test2.pp();
+        #print "bible Trigram perplexity"
+        #print bible_test3.pp();
 
         # lm1 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 1)
         # lm2 = GTLangModel("hotel_train.lm", "hotel_valid.lm", 2)
@@ -55,12 +55,12 @@ def main():
         # print hotel_test3.pp();
 
         #lm = GTLangModel("sample.train", "sample.valid", 3)
-        print "Unigram Prob:"
-        print lm1.probUnigram("I")
-        print "Bigram Prob:"
-        print lm2.probBigram("I", "miss")
-        print "Trigram Prob:"      
-        print lm3.probTrigram("I", "miss", "something")
+        # print "Unigram Prob:"
+        # print lm1.probUnigram("I")
+        # print "Bigram Prob:"
+        # print lm2.probBigram("I", "miss")
+        # print "Trigram Prob:"      
+        # print lm3.probTrigram("I", "miss", "something")
         # s = None
         # while s != 'quit':
         #         s = raw_input()
